@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Gerador de links</title>
+<style>
+  :root{--br:#8B6239;--dk:#5c3d20;--cr:#FAF7F2;--sd:#F3E9DC;--ln:#e2d3bf;--gd:#C9A45C;--mt:#7a6a58}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,sans-serif;background:var(--cr);color:#2a1c10;max-width:640px;margin:0 auto;padding:22px 14px 80px;line-height:1.45}
+  h1{color:var(--dk);font-size:26px;margin:0 0 4px}
+  .intro{color:var(--mt);margin:0 0 18px}
+  .step{display:flex;gap:10px;align-items:center;margin:22px 0 8px}
+  .step i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--br);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+  .step b{font-size:17px;color:var(--dk)}
+  input{width:100%;padding:11px 12px;font:inherit;border:1px solid var(--ln);border-radius:10px;background:#fff}
+  input:focus{outline:2px solid var(--gd);border-color:var(--gd)}
+  .help{font-size:14px;color:var(--mt);margin:4px 0 0}
+
+  .conv{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:14px 16px 16px;margin-bottom:14px;box-shadow:0 6px 16px #8b623314}
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .top b{color:var(--dk)}
+  .rm{border:0;background:none;color:#a3262a;font-size:13px;cursor:pointer;padding:4px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid label,.mesa label{display:block;font-size:13px;font-weight:600;color:var(--dk);margin-bottom:4px}
+  .grid label em{font-weight:400;color:var(--mt);font-style:normal}
+  .mesa{margin-top:10px;padding-top:10px;border-top:1px dashed var(--ln)}
+  .res{margin-top:12px;background:var(--sd);border-radius:10px;padding:10px 12px;display:none}
+  .res.show{display:block}
+  .res .lk{font-size:12px;color:var(--mt);word-break:break-all;margin-bottom:8px}
+  .acts{display:flex;gap:8px;flex-wrap:wrap}
+  button.b,a.b{padding:10px 14px;border-radius:9px;border:1px solid var(--br);background:#fff;color:var(--br);font:inherit;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none}
+  a.wa{background:#1fa855;border-color:#1fa855;color:#fff}
+  .add{width:100%;padding:13px;border:2px dashed var(--gd);background:transparent;color:var(--dk);border-radius:12px;font:inherit;font-weight:600;cursor:pointer}
+  .all{margin-top:14px;width:100%;padding:14px;border-radius:12px;border:0;background:var(--br);color:#fff;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+  @media(max-width:460px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>Gerador de links do convite</h1>
+<p class="intro">Preencha os nomes e a mesa. O link de cada convite aparece sozinho.</p>
+
+<div class="step"><i>1</i><b>Endereço do convite</b></div>
+<input id="base" value="https://SEU-SITE.pages.dev/convite.html" aria-label="Endereço do convite">
+<p class="help">Troque pelo endereço do convite no Cloudflare. Fica guardado neste aparelho.</p>
+
+<div class="step"><i>2</i><b>Convites</b></div>
+<p class="help" style="margin:0 0 12px">Um quadro por família ou grupo. Escreva <b>de 2 a 4 nomes</b> e a <b>mesa</b>.</p>
+<div id="lista"></div>
+<button class="add" id="add">+ Adicionar outro convite</button>
+
+<div class="step"><i>3</i><b>Enviar</b></div>
+<p class="help">Em cada convite, toque em <b>Enviar WhatsApp</b> e escolha o contacto. Ou use <b>Copiar link</b>.</p>
+<button class="all" id="copyAll">Copiar todos os links</button>
+
+<script>
+var $=function(i){return document.getElementById(i)},cont=$('lista'),count=0;
+function juntar(a){return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' e '+a[a.length-1]}
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var sb=load('bs_base');if(sb)$('base').value=sb;
+$('base').oninput=function(){save('bs_base',this.value);document.querySelectorAll('.conv').forEach(function(c){c.upd()})};
+
+function campo(label,ph,obrig){
+  var w=document.createElement('div'),l=document.createElement('label'),i=document.createElement('input');
+  l.textContent=label+' ';if(!obrig){var e=document.createElement('em');e.textContent='(opcional)';l.appendChild(e)}
+  i.placeholder=ph;i.autocomplete='off';w.append(l,i);return {w:w,i:i};
+}
+function novo(){
+  count++;
+  var box=document.createElement('div');box.className='conv';
+  var top=document.createElement('div');top.className='top';
+  var t=document.createElement('b');t.textContent='Convite';
+  var rm=document.createElement('button');rm.className='rm';rm.type='button';rm.textContent='Remover';
+  top.append(t,rm);
+  var grid=document.createElement('div');grid.className='grid';
+  var f=[campo('Nome 1','Ex: Maria Silva',true),campo('Nome 2','Ex: João Silva',true),campo('Nome 3','Ex: Ana Silva',false),campo('Nome 4','Ex: Pedro Silva',false)];
+  f.forEach(function(x){grid.appendChild(x.w)});
+  var mw=document.createElement('div');mw.className='mesa';
+  var ml=document.createElement('label');ml.textContent='Mesa';
+  var mi=document.createElement('input');mi.placeholder='Número ou nome. Ex: 5 ou Rosas';mi.autocomplete='off';
+  mw.append(ml,mi);
+  var res=document.createElement('div');res.className='res';
+  var lk=document.createElement('div');lk.className='lk';
+  var acts=document.createElement('div');acts.className='acts';
+  var wa=document.createElement('a');wa.className='b wa';wa.target='_blank';wa.rel='noopener';wa.textContent='Enviar WhatsApp';
+  var cp=document.createElement('button');cp.type='button';cp.className='b';cp.textContent='Copiar link';
+  acts.append(wa,cp);res.append(lk,acts);
+  box.append(top,grid,mw,res);cont.appendChild(box);
+
+  box.url='';
+  box.upd=function(){
+    var nomes=f.map(function(x){return x.i.value.trim()}).filter(Boolean);
+    var mesa=mi.value.trim(),base=$('base').value.trim();
+    cp.textContent='Copiar link';
+    if(nomes.length<1){res.classList.remove('show');box.url='';return}
+    res.classList.add('show');
+    box.url=base+'?'+nomes.map(function(n){return 'nome='+encodeURIComponent(n)}).join('&')+(mesa?'&mesa='+encodeURIComponent(mesa):'');
+    box.txt=juntar(nomes)+(mesa?' (mesa '+mesa+')':'');
+    lk.textContent=box.url;
+    wa.href='https://wa.me/?text='+encodeURIComponent('Olá '+juntar(nomes.map(function(n){return n.split(' ')[0]}))+'! Com muita alegria convidamos para as nossas Bodas de Safira. Aqui está o seu convite: '+box.url);
+    wa.style.opacity=1;
+    if(nomes.length<2){lk.textContent='⚠ Falta pelo menos o Nome 2. '+box.url}
+  };
+  f.concat([{i:mi}]).forEach(function(x){x.i.oninput=function(){box.upd()}});
+  cp.onclick=function(){if(!box.url)return;navigator.clipboard.writeText(box.url).then(function(){cp.textContent='Copiado ✓'})};
+  rm.onclick=function(){box.remove();renum()};
+  renum();return box;
+}
+function renum(){document.querySelectorAll('.conv').forEach(function(c,i){c.querySelector('.top b').textContent='Convite '+(i+1)})}
+$('add').onclick=function(){var b=novo();b.querySelector('input').focus()};
+$('copyAll').onclick=function(){
+  var b=this,linhas=[];document.querySelectorAll('.conv').forEach(function(c){if(c.url)linhas.push(c.txt+'\n'+c.url+'\n')});
+  if(!linhas.length){b.textContent='Preencha pelo menos um convite';return}
+  navigator.clipboard.writeText(linhas.join('\n')).then(function(){b.textContent='Copiado ✓'});
+};
+novo();novo();novo();
+</script>
+</body>
+</html>
