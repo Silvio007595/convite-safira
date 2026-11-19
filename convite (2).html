@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Convite · Bodas de Safira</title>
+<title>Convite</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
@@ -53,7 +53,9 @@ h2{font-size:46px;line-height:1.08;margin:10px 0 14px;font-style:italic;color:va
 #env.open p{opacity:0;transition:.3s}
 
 /* capa */
-.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;overflow:hidden;padding:70px 26px 130px;background:radial-gradient(ellipse at 50% 30%,#8a6035,#3a2411 78%)}
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;color:#fff;overflow:hidden;padding:60svh 26px 120px;background:radial-gradient(ellipse at 50% 30%,#8a6035,#3a2411 78%)}
+.hero .photo{position:absolute;left:0;right:0;top:0;height:min(82svh,760px);z-index:0;background:var(--h,none) 50% 22%/cover no-repeat;-webkit-mask-image:linear-gradient(#000 52%,transparent);mask-image:linear-gradient(#000 52%,transparent)}
+.hero .shade{position:absolute;inset:0;z-index:0;background:linear-gradient(#3a241155,#3a241100 22%,#3a241100 38%,#3a2411aa 62%,#3a2411)}
 .hero .facets{position:absolute;inset:0;z-index:0;opacity:.35;background:
   conic-gradient(from 200deg at 20% 15%,#ffffff14,#ffffff00 25%,#ffffff10 50%,#ffffff00 75%),
   conic-gradient(from 20deg at 85% 80%,#ffffff12,#ffffff00 30%,#ffffff0e 55%,#ffffff00 80%)}
@@ -61,9 +63,9 @@ h2{font-size:46px;line-height:1.08;margin:10px 0 14px;font-style:italic;color:va
 .hero::before{content:"";position:absolute;inset:22px;border:1px solid #e6c98a33;z-index:1;pointer-events:none}
 .hero>*{position:relative;z-index:2}
 .hero .kick{letter-spacing:.42em;font-size:12px;color:var(--gold2);text-transform:uppercase}
-.hero .big{font:500 clamp(120px,36vw,190px)/.9 'Cormorant Garamond',serif;margin:14px 0 4px;text-shadow:0 6px 30px #0007}
+.hero .big{font:500 clamp(96px,28vw,150px)/.9 'Cormorant Garamond',serif;margin:10px 0 2px;text-shadow:0 6px 30px #0007}
 .hero .anos{letter-spacing:.5em;font-size:13px;color:#f3e5cf;margin-top:-6px;text-transform:uppercase}
-.hero h1{font-family:'Great Vibes',cursive;font-size:clamp(40px,12vw,64px);line-height:1.1;margin:22px 0 0;color:#fff;text-shadow:0 3px 18px #0008}
+.hero h1{font-family:'Great Vibes',cursive;font-size:clamp(40px,12vw,64px);line-height:1.1;margin:16px 0 0;color:#fff;text-shadow:0 3px 18px #0008}
 .hero h1 .and{color:var(--gold);font-size:.7em;margin:0 .15em}
 .hero .completo{font:italic 500 20px/1.3 'Cormorant Garamond',serif;color:#f3e5cf;margin-top:8px;letter-spacing:.03em}
 .hero .date{letter-spacing:.3em;font-size:12px;color:var(--gold2);margin-top:14px}
@@ -88,6 +90,17 @@ h2{font-size:46px;line-height:1.08;margin:10px 0 14px;font-style:italic;color:va
 .stats span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mt)}
 .story{text-align:left}.story p{margin-bottom:14px}
 
+/* fotos */
+.gal{position:relative;width:min(100%,420px);margin:0 auto 34px;aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:8px solid #ead9bd;outline:1px solid var(--gold);box-shadow:0 24px 50px #8b623344;background:#3a2411;cursor:zoom-in;touch-action:pan-y}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:0;transform:scale(1.02);transition:opacity 1.2s}
+.gal img.on{opacity:1;animation:kb2 7s ease-out forwards}
+@keyframes kb2{to{transform:scale(1.08)}}
+.gal .cn{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;background:#0007;color:#fff;font-size:12px;padding:2px 12px;border-radius:20px;z-index:2}
+.ar{position:absolute;top:55%;margin-top:-20px;width:38px;height:38px;border-radius:50%;border:0;background:#ffffffcc;color:var(--ink);font-size:22px;cursor:pointer;z-index:2;line-height:1}
+.ar.p{left:8px}.ar.n{right:8px}
+.dots{display:flex;justify-content:center;gap:7px;margin:-16px 0 18px}.dots button{width:7px;height:7px;border-radius:7px;border:0;background:var(--ln);padding:0;cursor:pointer;transition:.4s}.dots button.on{width:24px;background:var(--sap)}
+#lb{position:fixed;inset:0;background:#000e;z-index:70;display:none;align-items:center;justify-content:center}#lb.show{display:flex}
+#lb img{max-width:100%;max-height:100%;object-fit:contain}#lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;background:0;border:0;color:#fff;font-size:34px;cursor:pointer}
 /* contagem */
 .cdw{background:radial-gradient(circle at 50% 0,#a07245,#6b4727);color:#f6ead8}.cdw h2{color:#fff}.cdw .eb{color:var(--gold2)}
 .cdg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cdg div{border-top:1px solid #e6c98a66;padding-top:10px}
@@ -128,6 +141,7 @@ form .btn.fill{width:100%;margin-top:24px;padding:15px;border-radius:12px;font-s
 
 .box{border:1px solid var(--ln);background:#fff;border-radius:18px;padding:30px 18px;margin-bottom:34px;box-shadow:0 14px 34px #8b623914}
 .hash{font:400 clamp(26px,9vw,40px) 'Great Vibes',cursive;overflow-wrap:anywhere;background:linear-gradient(100deg,#c9a45c,#8b6239 55%,#5c3d20);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer .cred{color:var(--sap);font-weight:500;text-decoration:none;border-bottom:1px solid var(--gold)}footer .cred:hover{color:var(--navy2)}
 footer{font-size:13px;color:var(--mt);padding:20px 0 90px;border-top:1px solid var(--ln);margin-top:30px}
 #fab{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;padding:14px 30px;font-size:15px;white-space:nowrap}
 #fab:hover{transform:translateX(-50%) translateY(-1px)}
@@ -138,8 +152,8 @@ footer{font-size:13px;color:var(--mt);padding:20px 0 90px;border-top:1px solid v
 img,canvas{max-width:100%}
 
 @media(max-width:430px){section{padding:62px 18px}h2{font-size:37px}.verse{font-size:25px}.cdg{gap:6px}.cdg b{font-size:40px}.cdg span{font-size:9px;letter-spacing:.08em}.tl{margin-left:56px}.tl time{left:-90px}.tl h3{font-size:26px}.gift b{font-size:15px}.stats b{font-size:34px}.stats span{font-size:9px;letter-spacing:.1em}#fab{padding:13px 24px;font-size:14px}form{padding:4px 16px 22px}}
-@media(min-width:900px){.w{max-width:700px}h2{font-size:60px}section{padding:110px 22px}.hero .big{font-size:230px}.hero h1{font-size:84px}.cdg b{font-size:70px}.ev{width:440px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+@media(min-width:900px){.w{max-width:700px}h2{font-size:60px}section{padding:110px 22px}.hero{justify-content:center;align-items:flex-start;text-align:left;padding:40px 7vw}.hero .photo{left:42%;right:0;top:0;bottom:0;height:auto;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}.hero .shade{background:none}.guest{margin-left:0}.hero .big{font-size:200px}.hero h1{font-size:84px}.cdg b{font-size:70px}.ev{width:440px}}
+@media(prefers-reduced-motion:reduce){.gal img.on{animation:none!important}*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -149,13 +163,16 @@ var CONFIG = {
   NOME1:        "Roberto",                    // ← primeiro nome (aparece grande)
   NOME2:        "Olga",                       // ← primeiro nome do outro (aparece grande)
   COMPLETO:     "Roberto Mate & Olga Mahique", // ← nomes completos (aparecem pequenos na capa)
-  ANOS:         "16",                         // ← anos de casados (bodas de safira = 45)
-  DATA_TEXTO:   "13 de Fevereiro de 2027",          // ← data escrita (aparece no convite)
-  DATA_ISO:     "2026-12-12T15:00:00+02:00",  // ← data/hora da contagem regressiva: AAAA-MM-DDTHH:MM:SS+02:00
-  HASHTAG:      "#RobertoEOlga45Anos",
+  ANOS:         "16",                         // ← anos de casados
+  TIPO:         "Bodas de Safira",            // ← nome da celebração (ex: "Bodas de Safira", "Bodas de Topázio" ou "Aniversário de Casamento")
+  DATA_TEXTO:   "13 de fevereiro de 2027",          // ← data escrita (aparece no convite)
+  DATA_ISO:     "2027-02-13T15:00:00+02:00",  // ← data/hora da contagem regressiva: AAAA-MM-DDTHH:MM:SS+02:00
+  HASHTAG:      "#RobertoEOlga16Anos",
   WHATSAPP:     "https://wa.me/258840000000", // ← WHATSAPP que recebe as confirmações: https://wa.me/258 + número, sem espaços
-  MUSICA:       "Brandon_Lake_-_Nothing_New_CeeNaija.com_.mp3",                 // ← ficheiro MP3 na MESMA PASTA deste convite (ou mude o nome aqui)
+  MUSICA:       "Brandon_Lake_-_Nothing_New_CeeNaija.com_.mp3", // ← nome EXATO do ficheiro MP3 que está no GitHub, na mesma pasta
   AUTO_SCROLL:  true,                         // ← rolagem automática (true / false)
+  FOTOS:       ["1.jpg", "2.jpg"],               // ← ficheiros das fotos (na MESMA PASTA do convite). Pode acrescentar mais: ["1.jpg","2.jpg","3.jpg"]
+  FOTO_CAPA:   2,                             // ← qual foto da lista aparece no topo (1 = primeira, 2 = segunda)
   MOSTRAR_PRESENTES: true                     // ← false esconde a secção de presentes
 };
 /* NOMES DOS CONVIDADOS (2 a 4) E MESA VÊM DO LINK, não se escrevem aqui:
@@ -166,14 +183,15 @@ var WHATSAPP_LINK = CONFIG.WHATSAPP, MUSIC_FILE = CONFIG.MUSICA, AUTO_SCROLL = C
 
 <button id="env" aria-label="Abrir convite">
   <div class="ev"><div class="bk"></div>
-    <div class="cd"><div class="s">BODAS DE SAFIRA</div><div class="n" data-casal></div><div class="d" data-data></div><div class="para" id="envPara"></div></div>
+    <div class="cd"><div class="s" data-tipo-up></div><div class="n" data-casal></div><div class="d" data-data></div><div class="para" id="envPara"></div></div>
     <div class="fr"></div><div class="fl"></div><div class="seal" id="seal"></div></div>
   <p>toque para abrir</p>
 </button>
 
 <header class="hero">
+  <div class="photo"></div><div class="shade"></div>
   <div class="facets"></div>
-  <div class="kick">Bodas de Safira</div>
+  <div class="kick" data-tipo></div>
   <div class="big gold" data-anos></div>
   <div class="anos">anos de amor</div>
   <h1><span data-n1></span><span class="and">&amp;</span><span data-n2></span></h1>
@@ -191,14 +209,14 @@ var WHATSAPP_LINK = CONFIG.WHATSAPP, MUSIC_FILE = CONFIG.MUSICA, AUTO_SCROLL = C
   <div class="eb">Uma vida a dois</div><h2>A nossa história</h2><div class="orn"><i></i></div>
   <div class="stats"><div><b data-anos></b><span>Anos juntos</span></div><div><b>♥</b><span>Uma família</span></div><div><b>∞</b><span>Gratidão</span></div></div>
   <div class="story">
-    <p>Há dezesseis anos dissemos «sim» e começámos a caminhar lado a lado. Pelo caminho houve alegrias, desafios, recomeços e muita fé.</p>
-    <p>Hoje, olhamos para trás com o coração cheio de gratidão. Cada ano foi uma pedra preciosa, e juntos formaram uma safira que o tempo só tornou mais brilhante.</p>
+    <p>Há <span data-anos></span> anos dissemos «sim» e começámos a caminhar lado a lado. Pelo caminho houve alegrias, desafios, recomeços e muita fé.</p>
+    <p>Hoje, olhamos para trás com o coração cheio de gratidão. Cada ano foi uma pedra preciosa, e juntos formaram uma joia que o tempo só tornou mais brilhante.</p>
     <p>Queremos celebrar esta data especial com quem nos acompanhou e amou ao longo do caminho. A sua presença é o nosso maior presente.</p>
   </div>
 </div></section>
 
 <section class="cdw"><div class="w rv">
-  <div class="eb">Contagem regressiva</div><h2>Faltam poucos dias</h2>
+  <div class="eb">Contagem regressiva</div><h2>Falta pouco</h2>
   <div class="sub" style="color:var(--gold2);font-size:17px" data-data></div><div class="orn"><i></i></div>
   <div class="cdg"><div><b id="d">00</b><span>Dias</span></div><div><b id="h">00</b><span>Horas</span></div><div><b id="m">00</b><span>Min</span></div><div><b id="s">00</b><span>Segundos</span></div></div>
 </div></section>
@@ -232,7 +250,14 @@ var WHATSAPP_LINK = CONFIG.WHATSAPP, MUSIC_FILE = CONFIG.MUSICA, AUTO_SCROLL = C
   </form>
 </div></section>
 
-<section class="alt" id="presentes"><div class="w rv">
+<section class="alt"><div class="w rv">
+  <div class="eb">Alguns dos nossos momentos</div><h2>Galeria de fotos</h2><div class="orn"><i></i></div>
+  <div class="gal" id="gal" aria-label="Galeria de fotos"><span class="cn" id="cn"></span><button class="ar p" type="button" aria-label="Anterior">‹</button><button class="ar n" type="button" aria-label="Seguinte">›</button></div>
+  <div class="dots" id="dots"></div>
+  <p class="sub" style="font-size:16px;margin-top:6px">Toque na foto para ver em ecrã inteiro</p>
+</div></section>
+
+<section id="presentes"><div class="w rv">
   <h2>Lembranças</h2><p class="sub">A sua presença é o nosso maior presente. Se desejar abençoar-nos, pode fazer uma contribuição.</p><div class="orn"><i></i></div>
   <button class="btn fill" id="gb" style="width:100%;padding:16px;font-size:15px">Ver formas de contribuir</button>
   <div class="gift" id="gf">
@@ -242,7 +267,7 @@ var WHATSAPP_LINK = CONFIG.WHATSAPP, MUSIC_FILE = CONFIG.MUSICA, AUTO_SCROLL = C
   </div>
 </div></section>
 
-<section><div class="w rv">
+<section class="alt"><div class="w rv">
   <h2>Manual do convidado</h2><p class="sub">Alguns detalhes para que o dia seja ainda mais especial.</p><div class="orn"><i></i></div>
   <div class="man">
     <div><h3>Confirme a sua presença</h3><p>Use o formulário acima para nos ajudar a organizar a celebração.</p></div>
@@ -253,16 +278,17 @@ var WHATSAPP_LINK = CONFIG.WHATSAPP, MUSIC_FILE = CONFIG.MUSICA, AUTO_SCROLL = C
   </div>
 </div></section>
 
-<section class="alt"><div class="w rv">
+<section><div class="w rv">
   <div class="box"><div style="color:var(--sap);font-size:22px">♡</div>
     <div class="verse" style="border:0;font-size:27px;padding:10px 0">“Portanto, o que Deus uniu ninguém separe.”<span class="ref">MARCOS 10:9</span></div></div>
   <div class="hash" data-hash></div><p class="sub" style="font-size:16px">Partilhe os seus momentos connosco</p>
-  <footer>Feito com ♥ para celebrar o amor<br>© 2026</footer>
+  <footer>Feito com ♥ para celebrar o amor<br>© 2026 · Feito por <a class="cred" href="https://www.instagram.com/codelinksol" target="_blank" rel="noopener noreferrer">Codelink Solutions</a></footer>
 </div></section>
 
 <a class="btn fill" id="fab" href="#rsvp">Confirmar presença</a>
 <button id="mus" aria-label="Música">♪</button><button id="as" aria-label="Rolagem automática">↓</button><audio id="au" loop preload="none"></audio>
 <div id="toast"></div>
+<div id="lb"><button aria-label="Fechar">×</button><img alt=""></div>
 
 <script>
 var $=function(i){return document.getElementById(i)},T=$('toast');
@@ -272,7 +298,7 @@ function juntar(a){return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+' e '+a
 
 /* dados fixos (CONFIG) */
 var C=CONFIG;
-document.title='Bodas de Safira · '+C.NOME1+' & '+C.NOME2;
+document.title=C.TIPO+' · '+C.NOME1+' & '+C.NOME2;setAll('[data-tipo]',C.TIPO);setAll('[data-tipo-up]',C.TIPO.toUpperCase());
 setAll('[data-casal]',C.NOME1+' & '+C.NOME2);setAll('[data-completo]',C.COMPLETO||'');setAll('[data-n1]',C.NOME1);setAll('[data-n2]',C.NOME2);
 setAll('[data-anos]',C.ANOS);$('seal').textContent=C.NOME1.charAt(0)+'&'+C.NOME2.charAt(0);setAll('[data-data]',C.DATA_TEXTO);setAll('[data-data-up]',C.DATA_TEXTO.toUpperCase());setAll('[data-hash]',C.HASHTAG);
 if(!C.MOSTRAR_PRESENTES)$('presentes').style.display='none';
@@ -310,7 +336,7 @@ var att='Sim, estaremos lá';
 document.querySelectorAll('.tg button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.tg button').forEach(function(o){o.classList.remove('on')});b.classList.add('on');att=b.dataset.v;if(GUEST.nomes.length>1)$('who').classList.toggle('show',b.dataset.v.indexOf('Sim')===0)}});
 $('f').onsubmit=function(ev){ev.preventDefault();
 var vai=[].slice.call(document.querySelectorAll('#chk input:checked')).map(function(c){return c.value});
-var msg='Olá! Confirmação de presença nas Bodas de Safira de '+C.NOME1+' e '+C.NOME2+':\n'+att
+var msg='Olá! Confirmação de presença: '+C.TIPO+' de '+C.NOME1+' e '+C.NOME2+':\n'+att
  +(GUEST.nomes.length>1&&att.indexOf('Sim')===0?'\nVão comparecer: '+(vai.length?juntar(vai):'ninguém')+' ('+vai.length+' de '+GUEST.nomes.length+')':'')
  +'\nResponde: '+$('n').value+(GUEST.mesa?'\nMesa: '+GUEST.mesa:'')+'\nTelefone: '+$('t').value+($('g').value?'\nMensagem: '+$('g').value:'');
 window.open(WHATSAPP_LINK+(WHATSAPP_LINK.indexOf('?')<0?'?':'&')+'text='+encodeURIComponent(msg),'_blank')};
@@ -327,11 +353,33 @@ function loop(t){if(!sc)return;pos+=Math.min(t-last,50)*.06;last=t;if(pos>=docum
 function setSc(on){sc=on;$('as').textContent=on?'❚❚':'↓';document.documentElement.style.scrollBehavior=on?'auto':'';if(on){pos=scrollY;last=performance.now();requestAnimationFrame(loop)}}
 ['wheel','touchstart','keydown','mousedown','focusin'].forEach(function(n){addEventListener(n,function(e){if(sc&&!(e.target.closest&&e.target.closest('#as')))setSc(false)},{passive:true})});
 $('as').onclick=function(){setSc(!sc)};
+/* galeria de fotos */
+function initFotos(){var G=FOTOS;if(!G||!G.length){var g0=$('gal');if(g0){g0.closest('section').style.display='none'}return}
+document.querySelector('.hero').style.setProperty('--h','url('+G[Math.min(Math.max((CONFIG.FOTO_CAPA||1)-1,0),G.length-1)]+')');
+var gal=$('gal'),dots=$('dots'),gi=0,tm,imgs=[],ds=[];
+G.forEach(function(s,i){var im=new Image();im.src=s;im.alt='Foto '+(i+1);gal.insertBefore(im,gal.firstChild);imgs.push(im);
+var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Foto '+(i+1));d.onclick=function(){go(i)};dots.appendChild(d);ds.push(d)});
+function go(i){imgs[gi].classList.remove('on');ds[gi].classList.remove('on');gi=(i+G.length)%G.length;
+var n=imgs[gi];n.style.animation='none';void n.offsetWidth;n.style.animation='';n.classList.add('on');ds[gi].classList.add('on');$('cn').textContent=(gi+1)+' / '+G.length;clearInterval(tm);tm=setInterval(function(){go(gi+1)},5500)}
+if(G.length<2){gal.querySelector('.p').style.display='none';gal.querySelector('.n').style.display='none';dots.style.display='none';$('cn').style.display='none'}
+gal.querySelector('.p').onclick=function(e){e.stopPropagation();go(gi-1)};gal.querySelector('.n').onclick=function(e){e.stopPropagation();go(gi+1)};
+var sx=null;gal.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+gal.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>40){go(gi+(dx<0?1:-1));gal._sw=1}},{passive:true});
+gal.onclick=function(){if(gal._sw){gal._sw=0;return}$('lb').querySelector('img').src=G[gi];$('lb').classList.add('show')};
+$('lb').onclick=function(){this.classList.remove('show')};
+go(0)}
 /* brilhos prateados na capa */
 (function(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;var h=document.querySelector('.hero'),c=document.createElement('canvas'),x=c.getContext('2d'),P=[],i;c.id='pt';h.appendChild(c);
 function rs(){c.width=h.clientWidth;c.height=h.clientHeight}rs();addEventListener('resize',rs);
 for(i=0;i<34;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*2+.6,v:Math.random()*.0004+.00015,a:Math.random()*6});
 (function f(){x.clearRect(0,0,c.width,c.height);P.forEach(function(p){p.y-=p.v*16;p.a+=.02;if(p.y<0){p.y=1;p.x=Math.random()}x.globalAlpha=.25+.5*Math.abs(Math.sin(p.a));x.fillStyle='#e6eefc';x.beginPath();x.arc(p.x*c.width,p.y*c.height,p.r,0,7);x.fill()});requestAnimationFrame(f)})()})();
+</script>
+<script>
+/* carrega as fotos da lista CONFIG.FOTOS; as que não existirem são ignoradas */
+var FOTOS=[];
+(function(){var L=CONFIG.FOTOS||[],ok=[],n=0;if(!L.length){initFotos();return}
+L.forEach(function(src,i){var t=new Image();t.onload=function(){ok[i]=src;fim()};t.onerror=function(){fim()};t.src=src});
+function fim(){if(++n===L.length){FOTOS=ok.filter(Boolean);initFotos()}}})();
 </script>
 </body>
 </html>
